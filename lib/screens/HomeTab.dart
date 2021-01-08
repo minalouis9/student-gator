@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:student_gator/screens/ProgramDetails.dart';
 import 'package:student_gator/utils/Colors.dart';
 import 'package:student_gator/utils/Styles.dart';
 
@@ -428,331 +429,336 @@ class _HomeTabState extends State<HomeTab> {
                   shrinkWrap: true,
                   itemCount: 10,
                   itemBuilder: (context, index) {
-                    return Container(
-                      width: 343,
-                      height: 196,
-                      margin: EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 20.0),
-                      padding: EdgeInsets.all(15.0),
-                      decoration: new BoxDecoration(
-                        color: Color(0xffffffff),
-                        borderRadius: BorderRadius.circular(10),
-                        boxShadow: [
-                          BoxShadow(
-                              color: Color(0x29000000),
-                              offset: Offset(0, 0),
-                              blurRadius: 10,
-                              spreadRadius: 0)
-                        ],
-                      ),
-                      child: Column(
-                        children: [
-                          Row(
-                            children: [
-                              Container(
-                                  decoration: new BoxDecoration(
-                                    color: Color(0xffffffff),
-                                    borderRadius: BorderRadius.circular(5),
-                                    boxShadow: [
-                                      BoxShadow(
-                                          color: Color(0x29000000),
-                                          offset: Offset(0, 0),
-                                          blurRadius: 6,
-                                          spreadRadius: 0)
+                    return InkWell(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context){return ProgramDetailsScreen();}));
+                      },
+                      child: Container(
+                        width: 343,
+                        height: 196,
+                        margin: EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 20.0),
+                        padding: EdgeInsets.all(15.0),
+                        decoration: new BoxDecoration(
+                          color: Color(0xffffffff),
+                          borderRadius: BorderRadius.circular(10),
+                          boxShadow: [
+                            BoxShadow(
+                                color: Color(0x29000000),
+                                offset: Offset(0, 0),
+                                blurRadius: 10,
+                                spreadRadius: 0)
+                          ],
+                        ),
+                        child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                Container(
+                                    decoration: new BoxDecoration(
+                                      color: Color(0xffffffff),
+                                      borderRadius: BorderRadius.circular(5),
+                                      boxShadow: [
+                                        BoxShadow(
+                                            color: Color(0x29000000),
+                                            offset: Offset(0, 0),
+                                            blurRadius: 6,
+                                            spreadRadius: 0)
+                                      ],
+                                    ),
+                                    child: SvgPicture.asset(
+                                      "assets/images/svg/full-moon.svg",
+                                      width: 90.0,
+                                      height: 90.0,
+                                    )),
+                                SizedBox(
+                                  width: 15.0,
+                                ),
+                                Container(
+                                  width: MediaQuery.of(context).size.width * 0.55,
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "Title",
+                                        style: TextStyle(
+                                          fontFamily: 'Roboto',
+                                          color: Color(0xff000000),
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w500,
+                                          fontStyle: FontStyle.normal,
+                                          letterSpacing: -0.36,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 8.0,
+                                      ),
+                                      Text(
+                                        "Subtitle",
+                                        style: TextStyle(
+                                          fontFamily: 'Roboto',
+                                          color: Color(0xff000000),
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w400,
+                                          fontStyle: FontStyle.normal,
+                                          letterSpacing: -0.336,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 20.0,
+                                      ),
+                                      RichText(
+                                        text: TextSpan(
+                                          children: <TextSpan>[
+                                            TextSpan(
+                                                text: "TUITION FEE  ",
+                                                style: TextStyle(
+                                                  fontFamily: 'Roboto',
+                                                  color: Color(0xff000000),
+                                                  fontSize: 13,
+                                                  fontWeight: FontWeight.w400,
+                                                  fontStyle: FontStyle.normal,
+                                                  letterSpacing: -0.312,
+                                                )),
+                                            TextSpan(
+                                              text: "9,000 per year Rennes",
+                                              style: CustomStyles
+                                                  .registerRichTextStyle,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
                                     ],
                                   ),
-                                  child: SvgPicture.asset(
-                                    "assets/images/svg/full-moon.svg",
-                                    width: 90.0,
-                                    height: 90.0,
-                                  )),
-                              SizedBox(
-                                width: 15.0,
-                              ),
-                              Container(
-                                width: MediaQuery.of(context).size.width * 0.55,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "Title",
-                                      style: TextStyle(
-                                        fontFamily: 'Roboto',
-                                        color: Color(0xff000000),
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.w500,
-                                        fontStyle: FontStyle.normal,
-                                        letterSpacing: -0.36,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 8.0,
-                                    ),
-                                    Text(
-                                      "Subtitle",
-                                      style: TextStyle(
-                                        fontFamily: 'Roboto',
-                                        color: Color(0xff000000),
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w400,
-                                        fontStyle: FontStyle.normal,
-                                        letterSpacing: -0.336,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 20.0,
-                                    ),
-                                    RichText(
-                                      text: TextSpan(
-                                        children: <TextSpan>[
-                                          TextSpan(
-                                              text: "TUITION FEE  ",
+                                )
+                              ],
+                            ),
+                            SizedBox(
+                              height: 20.0,
+                            ),
+                            MaterialButton(
+                              onPressed: () {
+                                showModalBottomSheet(
+                                    context: context,
+                                    builder: (context) {
+                                      return Container(
+                                        padding: EdgeInsets.fromLTRB(
+                                            16.0, 33.0, 16.0, 42.0),
+                                        height: 240.0,
+                                        decoration: new BoxDecoration(
+                                          color: Color(0xffffffff),
+                                          boxShadow: [
+                                            BoxShadow(
+                                                color: Color(0x4d000000),
+                                                offset: Offset(0, -0.5),
+                                                blurRadius: 20,
+                                                spreadRadius: 0)
+                                          ],
+                                        ),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              "Confirm",
                                               style: TextStyle(
                                                 fontFamily: 'Roboto',
                                                 color: Color(0xff000000),
-                                                fontSize: 13,
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.w500,
+                                                fontStyle: FontStyle.normal,
+                                                letterSpacing: 0.36,
+                                              ),
+                                            ),
+                                            SizedBox(height: 27.0),
+                                            Text(
+                                              "Apply in certain program",
+                                              style: TextStyle(
+                                                fontFamily: 'Roboto',
+                                                color: Color(0xff000000),
+                                                fontSize: 16,
                                                 fontWeight: FontWeight.w400,
                                                 fontStyle: FontStyle.normal,
-                                                letterSpacing: -0.312,
-                                              )),
-                                          TextSpan(
-                                            text: "9,000 per year Rennes",
-                                            style: CustomStyles
-                                                .registerRichTextStyle,
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              )
-                            ],
-                          ),
-                          SizedBox(
-                            height: 20.0,
-                          ),
-                          MaterialButton(
-                            onPressed: () {
-                              showModalBottomSheet(
-                                  context: context,
-                                  builder: (context) {
-                                    return Container(
-                                      padding: EdgeInsets.fromLTRB(
-                                          16.0, 33.0, 16.0, 42.0),
-                                      height: 240.0,
-                                      decoration: new BoxDecoration(
-                                        color: Color(0xffffffff),
-                                        boxShadow: [
-                                          BoxShadow(
-                                              color: Color(0x4d000000),
-                                              offset: Offset(0, -0.5),
-                                              blurRadius: 20,
-                                              spreadRadius: 0)
-                                        ],
-                                      ),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          Text(
-                                            "Confirm",
-                                            style: TextStyle(
-                                              fontFamily: 'Roboto',
-                                              color: Color(0xff000000),
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.w500,
-                                              fontStyle: FontStyle.normal,
-                                              letterSpacing: 0.36,
+                                                letterSpacing: 0.32,
+                                              ),
                                             ),
-                                          ),
-                                          SizedBox(height: 27.0),
-                                          Text(
-                                            "Apply in certain program",
-                                            style: TextStyle(
-                                              fontFamily: 'Roboto',
-                                              color: Color(0xff000000),
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.w400,
-                                              fontStyle: FontStyle.normal,
-                                              letterSpacing: 0.32,
+                                            SizedBox(
+                                              height: 40.0,
                                             ),
-                                          ),
-                                          SizedBox(
-                                            height: 40.0,
-                                          ),
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              MaterialButton(
-                                                onPressed: () {
-                                                  Navigator.pop(context);
-                                                },
-                                                minWidth: 108.0,
-                                                height: 42.0,
-                                                child: Text(
-                                                  "Cancel",
-                                                  style: TextStyle(
-                                                    fontFamily: 'Roboto',
-                                                    color: Color(0xffc4c4c4),
-                                                    fontSize: 16,
-                                                    fontWeight: FontWeight.w500,
-                                                    fontStyle: FontStyle.normal,
-                                                    letterSpacing: -0.384,
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.spaceBetween,
+                                              children: [
+                                                MaterialButton(
+                                                  onPressed: () {
+                                                    Navigator.pop(context);
+                                                  },
+                                                  minWidth: 108.0,
+                                                  height: 42.0,
+                                                  child: Text(
+                                                    "Cancel",
+                                                    style: TextStyle(
+                                                      fontFamily: 'Roboto',
+                                                      color: Color(0xffc4c4c4),
+                                                      fontSize: 16,
+                                                      fontWeight: FontWeight.w500,
+                                                      fontStyle: FontStyle.normal,
+                                                      letterSpacing: -0.384,
+                                                    ),
                                                   ),
+                                                  shape: RoundedRectangleBorder(
+                                                      side: BorderSide(),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              5)),
+                                                  elevation: 2,
                                                 ),
-                                                shape: RoundedRectangleBorder(
-                                                    side: BorderSide(),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            5)),
-                                                elevation: 2,
-                                              ),
-                                              MaterialButton(
-                                                onPressed: () {
-                                                  Navigator.pop(context);
-                                                  showModalBottomSheet(
-                                                      context: context,
-                                                      builder: (context) {
-                                                        return Container(
-                                                          padding: EdgeInsets
-                                                              .fromLTRB(
-                                                                  16.0,
-                                                                  34.0,
-                                                                  16.0,
-                                                                  42.0),
-                                                          height: 240.0,
-                                                          decoration:
-                                                              new BoxDecoration(
-                                                            color: Color(
-                                                                0xffffffff),
-                                                            boxShadow: [
-                                                              BoxShadow(
-                                                                  color: Color(
-                                                                      0x4d000000),
-                                                                  offset:
-                                                                      Offset(0,
-                                                                          -0.5),
-                                                                  blurRadius:
-                                                                      20,
-                                                                  spreadRadius:
-                                                                      0)
-                                                            ],
-                                                          ),
-                                                          child: Column(
-                                                            children: [
-                                                              Text(
-                                                                "Done",
-                                                                style:
-                                                                    TextStyle(
-                                                                  fontFamily:
-                                                                      'Roboto',
-                                                                  color: Color(
-                                                                      0xff000000),
-                                                                  fontSize: 18,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500,
-                                                                  fontStyle:
-                                                                      FontStyle
-                                                                          .normal,
-                                                                  letterSpacing:
-                                                                      0.36,
+                                                MaterialButton(
+                                                  onPressed: () {
+                                                    Navigator.pop(context);
+                                                    showModalBottomSheet(
+                                                        context: context,
+                                                        builder: (context) {
+                                                          return Container(
+                                                            padding: EdgeInsets
+                                                                .fromLTRB(
+                                                                    16.0,
+                                                                    34.0,
+                                                                    16.0,
+                                                                    42.0),
+                                                            height: 240.0,
+                                                            decoration:
+                                                                new BoxDecoration(
+                                                              color: Color(
+                                                                  0xffffffff),
+                                                              boxShadow: [
+                                                                BoxShadow(
+                                                                    color: Color(
+                                                                        0x4d000000),
+                                                                    offset:
+                                                                        Offset(0,
+                                                                            -0.5),
+                                                                    blurRadius:
+                                                                        20,
+                                                                    spreadRadius:
+                                                                        0)
+                                                              ],
+                                                            ),
+                                                            child: Column(
+                                                              children: [
+                                                                Text(
+                                                                  "Done",
+                                                                  style:
+                                                                      TextStyle(
+                                                                    fontFamily:
+                                                                        'Roboto',
+                                                                    color: Color(
+                                                                        0xff000000),
+                                                                    fontSize: 18,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w500,
+                                                                    fontStyle:
+                                                                        FontStyle
+                                                                            .normal,
+                                                                    letterSpacing:
+                                                                        0.36,
+                                                                  ),
                                                                 ),
-                                                              ),
-                                                              SizedBox(
-                                                                  height: 27.0),
-                                                              Text(
-                                                                "Check your email address you received it has\nall details",
-                                                                style:
-                                                                    TextStyle(
-                                                                  fontFamily:
-                                                                      'Roboto',
-                                                                  color: Color(
-                                                                      0xff000000),
-                                                                  fontSize: 16,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w400,
-                                                                  fontStyle:
-                                                                      FontStyle
-                                                                          .normal,
-                                                                  letterSpacing:
-                                                                      0.32,
+                                                                SizedBox(
+                                                                    height: 27.0),
+                                                                Text(
+                                                                  "Check your email address you received it has\nall details",
+                                                                  style:
+                                                                      TextStyle(
+                                                                    fontFamily:
+                                                                        'Roboto',
+                                                                    color: Color(
+                                                                        0xff000000),
+                                                                    fontSize: 16,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w400,
+                                                                    fontStyle:
+                                                                        FontStyle
+                                                                            .normal,
+                                                                    letterSpacing:
+                                                                        0.32,
+                                                                  ),
                                                                 ),
-                                                              ),
-                                                              SizedBox(
-                                                                height: MediaQuery.of(
-                                                                            context)
-                                                                        .size
-                                                                        .height *
-                                                                    0.035,
-                                                              ),
-                                                              MaterialButton(
-                                                                onPressed: () {
-                                                                  Navigator.pop(
-                                                                      context);
-                                                                },
-                                                                height: 42.0,
-                                                                color: CustomColors
-                                                                    .primaryColor,
-                                                                minWidth:
-                                                                    MediaQuery.of(
-                                                                            context)
-                                                                        .size
-                                                                        .width,
-                                                                child: Text(
-                                                                  "Mores Offers",
-                                                                  style: CustomStyles
-                                                                      .loginButtonLabelStyle,
+                                                                SizedBox(
+                                                                  height: MediaQuery.of(
+                                                                              context)
+                                                                          .size
+                                                                          .height *
+                                                                      0.035,
                                                                 ),
-                                                                shape: RoundedRectangleBorder(
-                                                                    side:
-                                                                        BorderSide(),
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            5)),
-                                                                elevation: 2,
-                                                              )
-                                                            ],
-                                                          ),
-                                                        );
-                                                      });
-                                                },
-                                                minWidth: 216.0,
-                                                height: 42.0,
-                                                child: Text(
-                                                  "Apply Now",
-                                                  style: CustomStyles
-                                                      .loginButtonLabelStyle,
+                                                                MaterialButton(
+                                                                  onPressed: () {
+                                                                    Navigator.pop(
+                                                                        context);
+                                                                  },
+                                                                  height: 42.0,
+                                                                  color: CustomColors
+                                                                      .primaryColor,
+                                                                  minWidth:
+                                                                      MediaQuery.of(
+                                                                              context)
+                                                                          .size
+                                                                          .width,
+                                                                  child: Text(
+                                                                    "Mores Offers",
+                                                                    style: CustomStyles
+                                                                        .loginButtonLabelStyle,
+                                                                  ),
+                                                                  shape: RoundedRectangleBorder(
+                                                                      side:
+                                                                          BorderSide(),
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              5)),
+                                                                  elevation: 2,
+                                                                )
+                                                              ],
+                                                            ),
+                                                          );
+                                                        });
+                                                  },
+                                                  minWidth: 216.0,
+                                                  height: 42.0,
+                                                  child: Text(
+                                                    "Apply Now",
+                                                    style: CustomStyles
+                                                        .loginButtonLabelStyle,
+                                                  ),
+                                                  shape: RoundedRectangleBorder(
+                                                      side: BorderSide(),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              5)),
+                                                  elevation: 2,
+                                                  color:
+                                                      CustomColors.primaryColor,
                                                 ),
-                                                shape: RoundedRectangleBorder(
-                                                    side: BorderSide(),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            5)),
-                                                elevation: 2,
-                                                color:
-                                                    CustomColors.primaryColor,
-                                              ),
-                                            ],
-                                          )
-                                        ],
-                                      ),
-                                    );
-                                  });
-                            },
-                            child: Text(
-                              "Apply Now",
-                              style: CustomStyles.loginButtonLabelStyle,
-                            ),
-                            color: CustomColors.primaryColor,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                            elevation: 3,
-                            minWidth: MediaQuery.of(context).size.width,
-                          )
-                        ],
+                                              ],
+                                            )
+                                          ],
+                                        ),
+                                      );
+                                    });
+                              },
+                              child: Text(
+                                "Apply Now",
+                                style: CustomStyles.loginButtonLabelStyle,
+                              ),
+                              color: CustomColors.primaryColor,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                              elevation: 3,
+                              minWidth: MediaQuery.of(context).size.width,
+                            )
+                          ],
+                        ),
                       ),
                     );
                   }),
