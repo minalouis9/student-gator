@@ -28,13 +28,7 @@ class _SettingsTabState extends State<SettingsTab> {
           ),),
           SizedBox(height: 43.0,),
           MaterialButton(
-            onPressed: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context){return LanguageScreen();})).then((value){
-                setState(() {
-                  language = value;
-                });
-              });
-            },
+            onPressed: (){},
             shape: RoundedRectangleBorder(
                 side: BorderSide(color: Colors.black12),
                 borderRadius: BorderRadius.circular(5.0)

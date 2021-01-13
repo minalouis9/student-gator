@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:student_gator/models/User.dart';
+import 'package:student_gator/services/FirebaseClient.dart';
 import 'package:student_gator/utils/Colors.dart';
+import 'package:student_gator/utils/LocalStorage.dart';
 import 'package:student_gator/utils/Styles.dart';
 
 class EditAccountScreen extends StatefulWidget {
+  final Users currentUser;
+  EditAccountScreen({this.currentUser});
   @override
   _EditAccountScreenState createState() => _EditAccountScreenState();
 }
@@ -12,7 +17,7 @@ class _EditAccountScreenState extends State<EditAccountScreen> {
       _emailController = TextEditingController(),
       _bioController = TextEditingController();
 
-  String dropdownNationalityValue = 'Egypt', dropdownDegreeValue = 'Bachelor', dropdownEnglishTestValue = "Toefl", dropdownCountryValue = "UK";
+  String dropdownNationalityValue = '', dropdownDegreeValue = 'Bachelor', dropdownEnglishTestValue = "", dropdownCountryValue = "";
 
   _textInput(controller, isObscure){
     return TextField(
@@ -24,6 +29,20 @@ class _EditAccountScreenState extends State<EditAccountScreen> {
         ),
       ),
     );
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    setState(() {
+      _fullNameController.text = widget.currentUser.name;
+      _emailController.text = widget.currentUser.email;
+      _bioController.text = widget.currentUser.bio;
+      dropdownNationalityValue = widget.currentUser.nationality;
+      dropdownEnglishTestValue = widget.currentUser.languageTest;
+      dropdownCountryValue = widget.currentUser.countryWanted;
+    });
   }
 
   @override
@@ -46,7 +65,15 @@ class _EditAccountScreenState extends State<EditAccountScreen> {
                 SizedBox(height: 23.0,),
                 Text("Email", style: CustomStyles.labelStyle,textAlign: TextAlign.start,),
                 SizedBox(height: 13.0,),
-                _textInput(_emailController, false),
+                TextField(
+                  controller: _emailController,
+                  enabled: false,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                  ),
+                ),
                 SizedBox(height: 23.0,),
                 Text("Nationality", style: CustomStyles.labelStyle,),
                 SizedBox(height: 10.0,),
@@ -106,7 +133,7 @@ class _EditAccountScreenState extends State<EditAccountScreen> {
                     ),
                     isExpanded: true,
                     value: dropdownEnglishTestValue,
-                    items: <String>['Toefl', '', '', ''] // TODO: fill in wanted english tests
+                    items: <String>['Toefl', 'Ilets'] // TODO: fill in wanted english tests
                         .map<DropdownMenuItem<String>>((String value) {
                       return DropdownMenuItem<String>(
                         value: value,
@@ -130,7 +157,7 @@ class _EditAccountScreenState extends State<EditAccountScreen> {
                     ),
                     isExpanded: true,
                     value: dropdownCountryValue,
-                    items: <String>['UK', '', '', ''] // TODO: fill in wanted countries
+                    items: <String>['UK', 'Germany', 'France'] // TODO: fill in wanted countries
                         .map<DropdownMenuItem<String>>((String value) {
                       return DropdownMenuItem<String>(
                         value: value,
@@ -160,8 +187,23 @@ class _EditAccountScreenState extends State<EditAccountScreen> {
                 MaterialButton(
                   minWidth: MediaQuery.of(context).size.width,
                   height: 42.0,
-                  onPressed: (){
-                    Navigator.pop(context);
+                  onPressed: () async {
+                    Users user = Users(
+                      id: widget.currentUser.id,
+                      name: _fullNameController.text,
+                      email:  _emailController.text,
+                      bio: _bioController.text,
+                      nationality: dropdownNationalityValue,
+                      languageTest: dropdownEnglishTestValue,
+                      countryWanted: dropdownCountryValue,
+                      password: widget.currentUser.password,
+                      profilePictureURL: widget.currentUser.profilePictureURL
+                    );
+                    await FirebaseClient().usersService().updateUser(user).whenComplete(() async {
+                      await LocalStorage().saveUser(user).whenComplete((){
+                        Navigator.pop(context);
+                      });
+                    });
                   },
                   color: CustomColors.primaryColor,
                   child: Text("Save", style: CustomStyles.loginButtonLabelStyle,),
